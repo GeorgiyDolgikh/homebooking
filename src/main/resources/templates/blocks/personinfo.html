@@ -1,0 +1,53 @@
+<div th:fragment="guestinfo" >
+
+<div  class="bd-code-snippet " >
+    <div class="row" >
+        <div class="col-12 dg-col">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="isemployee" value="" id="flexCheckDefault_4">
+                <label class="form-check-label" for="flexCheckDefault_4">
+                    Является действующим сотрудником компании
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-sm-12 dg-col">
+            <label   for="fio_4" class="form-label" >ФИО гостя</label>
+            <input  name="fullname" id="fio_4"  required class="form-control" placeholder="Иванов Петр Сергеевич"
+                    onkeydown="if(event.keyCode==13){return false;}"/>
+        </div>
+        <div class="col-md-4 col-sm-12 dg-col">
+            <label   for="birthdate_4" class="form-label" >Дата рождения</label>
+            <input  name="birthdate" id="birthdate_4"  type="date" required class="form-control"
+                    onkeydown="if(event.keyCode==13){return false;}"/>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-4 dg-col">
+            <label  for="email_4" class="form-label" >Email</label>
+            <input  name="email" id="email_4"  type="email" required class="form-control"
+                    placeholder="employee@vsk.ru"
+                    onkeydown="if(event.keyCode==13){return false;}"/>
+        </div>
+        <div class="col-sm-12 col-md-4 dg-col">
+            <label  for="mobile_4" class="form-label" >Мобильный телефон</label>
+            <input class="form-control" data-mask="phone" id="mobile_4" name="phone" onkeydown="if(event.keyCode==13){return false;}"
+                   placeholder="+79636440113" required
+                   type="tel"/>
+        </div>
+        <div class="col-sm-12 col-md-4 dg-col">
+            <label for="filial_4" class="form-label">Филиал</label>
+            <select name="filial" id="filial_4" required class="form-control" th:selected="${filiallist}">
+                <option value=""  disabled="disabled">Выберите</option>
+                <option th:each="el:${filiallist}"   th:text="${el.name}"
+                        th:value="${el.getId()}"
+                ></option>
+            </select>
+        </div>
+
+    </div>
+</div>
+</div>

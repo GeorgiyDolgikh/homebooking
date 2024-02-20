@@ -1,0 +1,46 @@
+<header th:insert="~{blocks/top ::top}"></header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+<section class="db-questions  bg-white">
+    <div class="container" style="max-width: 960px">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center  color2">Для просмотра страницы нужно авторизоваться</h2>
+            </div>
+        </div>
+        <form name="userRegistration"  method="post"  action="/login" >
+            <div class="row">
+                <div class="col-12 dg-col">
+                    <label   for="username" class="form-label" >Введите email</label>
+                    <input  name="username" id="username"  required class="form-control"
+                            onkeydown="if(event.keyCode===13){return false;}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 dg-col">
+                    <label for="password" class="form-label">Введите пароль</label>
+                    <input class="form-control"  id="password" name="password"
+                           type="password"/>
+                </div>
+            </div>
+            <div class="row" style="text-align: right;align-content: flex-end">
+                <div class="col-12 dg-col">
+                    <!--                    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">-->
+                    <button type="submit" class="btn btn-lg btn-itd mt-3" >Войти</button>
+                    <a href="/registration" class="btn btn-lg btn-itd mt-3">Регистрация</a>
+                </div>
+            </div>
+            <input type="hidden"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}"/>
+        </form>
+
+    </div>
+</section>
+<footer th:insert="~{blocks/footer ::footer}"></footer>
+
+<script src="/js/imask.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+
+</html>

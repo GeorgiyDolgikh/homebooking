@@ -1,0 +1,111 @@
+:root {
+    
+    /* --color1:#A8E12F; */
+     /* --color2:#A8E12F; */
+
+    --color1: #4900D0;
+    --color2: #1777FF;
+
+    /* --color1: #e73b15;
+    --color2: #1770ff; */
+   
+   
+
+    --color-gray:#EDEDEE;
+    --color-white:#fff;
+
+}
+
+section {
+    padding: 100px 0;
+}
+
+header,
+footer {
+     padding: 50px 0; 
+}
+
+header,
+footer {
+    /*background:  var(--color2);*/
+    /*background:  url(/img/sosna.jpg), linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);*/
+    /*background-size: contain;*/
+}
+footer{
+    /*background:  linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);*/
+}
+/*.dg-nav{*/
+/*    opacity: 0.2;*/
+/*    background:  linear-gradient(to right, var(--color1) 0%, var(--color2) 100%);*/
+/*    background-image: unset;*/
+/*}*/
+
+.dg-col{
+    margin-bottom: 25px;
+}
+.dg-title{
+    color: var(--color1);
+    margin-bottom: 25px;
+}
+
+.btn-itd {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: -8px 30px;
+    color: var(--bs-white);
+    background-color: var(--color2);
+}
+
+.btn-itd:hover {
+    color: var(--bs-white);
+    background-color: var(--color1);
+}
+
+
+.color1 {
+    color: var(--color1);
+}
+
+.color2 {
+    color: var(--color2);
+}
+
+.bg1 {
+    background-color: var(--color1)
+}
+
+.bg2 {
+    background-color: var(--color2);
+}
+.bg-grey{
+    background-color: var(--color-gray);
+}
+.bg-white{
+    background-color: var(--color-white);
+}
+/* Карты */
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.text-road{
+    vertical-align: middle;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+
+}

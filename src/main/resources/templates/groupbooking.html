@@ -1,0 +1,117 @@
+<header th:insert="~{blocks/top ::top}" style="padding-top: 0"></header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+
+<section class="db-questions  bg-white">
+    <div class="container" style="max-width: 960px">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center  color2">Групповое бронирование</h2>
+                <h2 class="text-center mb-5 color2" th:text="'ШАГ '+${step}"></h2>
+<!--                <div class="container" style="max-width: 960px;">-->
+            </div>
+            <!--            </div>-->
+        </div>
+
+<!--                    <div class="mb-3 py-3" >-->
+        <form method="post" th:action="${step.equals('1')?'/groupbooking':'/groupbooking2'}" >
+            <div class="row" >
+                <div class="col-sm-12 col-md-6 dg-col">
+                    <label for="count" class="form-label">Количество домиков</label>
+                    <select th:if="${step.equals('1')}" id="count" name="count" required class="form-control">
+                        <option value="" disabled="disabled">Выберите</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                    </select>
+                    <input th:unless="${step.equals('1')}" readonly name="count" id="count" class="form-control" th:value="${count}" />
+                </div>
+                <div class="col-sm-12 col-md-6 dg-col" >
+                    <label for="isHoliday" class="form-label">Тип заезда</label>
+                    <select th:if="${step.equals('1')}" name="isHoliday" id="isHoliday" required class="form-control" >
+                        <option value="" disabled="disabled">Выберите</option>
+                        <option value="0">Будние дни</option>
+                        <option value="1">Выходные дни</option>
+                    </select>
+                    <input th:unless="${step.equals('1')}" id="isHoliday" readonly name="isHoliday"  class="form-control" th:value="${isHoliday}"/>
+                </div>
+            </div>
+            <!--                ШАГ 2-->
+            <div th:if="${!step.equals('1')}" >
+                <div class="row">
+                    <div class="col-12 dg-col">
+                        <label   for="fio" class="form-label" >ФИО ответственного полностью</label>
+                        <input  name="fio" id="fio"  required class="form-control" placeholder="Иванов Петр Сергеевич"
+                                onkeydown="if(event.keyCode==13){return false;}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 dg-col">
+                        <label  for="email" class="form-label" >Email</label>
+                        <input  name="email" id="email"  type="email" required class="form-control"
+                                placeholder="employee@vsk.ru"
+                                onkeydown="if(event.keyCode==13){return false;}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-4 dg-col">
+                        <label  for="mobile" class="form-label" >Мобильный телефон</label>
+                        <input class="form-control" data-mask="phone" id="mobile" name="mobile" onkeydown="if(event.keyCode==13){return false;}"
+                               placeholder="+79631000000" required
+                               type="tel"/>
+                    </div>
+                    <div class="col-sm-12 col-md-4 dg-col">
+                        <label for="startdate" class="form-label">Даты заезда</label>
+                        <select name="startdate" id="startdate" required class="form-control" th:selected="${smenaList}">
+                            <option value=""  disabled="disabled">Выберите</option>
+                            <option th:each="el:${smenaList}"   th:text="${el.getDescription()}"
+                                    th:value="${el.getId()}"
+                            ></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 dg-col">
+                        <label  for="comment" class="form-label" >Описание мероприятия</label>
+                        <textarea class="form-control" name="comment"  id="comment" required rows="4"></textarea>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row" >
+                <div class="col-12 dg-col">
+                    <button type="submit" class="btn btn-lg btn-itd mt-3" th:text="${step.equals('1')?'Далее >>>':'Забронировать'}"></button>
+                </div>
+            </div>
+
+
+        </form>
+<!--                    </div>-->
+
+    </div>
+</section>
+<footer th:insert="~{blocks/footer ::footer}"></footer>
+
+<script src="/js/imask.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        inputElement = document.getElementById("mobile");
+        if(inputElement){
+            maskOptions = {
+                mask: '+{7}(000)000-00-00'
+            }
+            IMask(inputElement, maskOptions);
+        }
+
+    })
+</script>
+
+</html>

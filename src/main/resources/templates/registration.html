@@ -1,0 +1,89 @@
+<header th:insert="~{blocks/top ::top}"></header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+<section class="db-questions  bg-white">
+    <div class="container" style="max-width: 960px">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center  color2">Регистрация пользователя</h2>
+            </div>
+        </div>
+        <form name="userRegistration"  method="post"  action="/registration" >
+<!--            <div class="bd-code-snippet " id="oneguestinformation_1" >-->
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 dg-col">
+                        <label   for="fio" class="form-label" >ФИО</label>
+                        <input  name="fullname" id="fio"  required class="form-control" placeholder="Иванов Петр Сергеевич"
+                                onkeydown="if(event.keyCode===13){return false;}"/>
+                    </div>
+                    <div class="col-md-4 col-sm-12 dg-col">
+                        <label   for="birthdate" class="form-label" >Дата рождения</label>
+                        <input  name="birthdate" id="birthdate"  type="date" required class="form-control"
+                                onkeydown="if(event.keyCode===13){return false;}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4 dg-col">
+                        <label  for="email_1" class="form-label" >Email</label>
+                        <input  name="email" id="email_1"  type="email" required class="form-control"
+                                placeholder="employee@vsk.ru"
+                                onkeydown="if(event.keyCode===13){return false;}"/>
+                    </div>
+                    <div class="col-sm-12 col-md-4 dg-col">
+                        <label  for="phone" class="form-label" >Мобильный телефон</label>
+                        <input class="form-control" data-mask="phone" id="phone" name="phone" onkeydown="if(event.keyCode===13){return false;}"
+                               placeholder="+70000000000" required
+                               type="tel"/>
+                    </div>
+                    <div  class="col-sm-12 col-md-4 dg-col">
+                        <label for="filial_1" class="form-label">Филиал</label>
+                        <select name="filial" id="filial_1" required class="form-control" th:selected="${filiallist}">
+                            <option value=""  disabled="disabled">Выберите</option>
+                            <option th:each="el:${filiallist}"   th:text="${el.name}"
+                                    th:value="${el.getId()}"
+                            ></option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <label for="password" class="form-label">Введите пароль</label>
+                            <input class="form-control"  id="password" name="password" onkeydown="if(event.keyCode===13){return false;}"
+                                   type="password"/>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <label for="password_1" class="form-label">Введите пароль</label>
+                            <input class="form-control"  id="password_1" name="password_1" onkeydown="if(event.keyCode===13){return false;}"
+                                   type="password"/>
+                        </div>
+                    </div>
+                </div>
+<!--            </div>-->
+            <div class="row" style="text-align: right;align-content: flex-end">
+                <div class="col-12 dg-col">
+<!--                    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}">-->
+                    <button type="submit" class="btn btn-lg btn-itd mt-3"  >Зарегистрироваться</button>
+                </div>
+            </div>
+            <input type="hidden"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}"/>
+        </form>
+
+    </div>
+</section>
+<footer th:insert="~{blocks/footer ::footer}"></footer>
+
+<script src="/js/imask.js"></script>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        inputElement = document.getElementById("phone");
+        maskOptions = {
+            mask: '+{7}(000)000-00-00'
+        }
+        IMask(inputElement, maskOptions);
+    })
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<header th:insert="~{blocks/top ::top}"></header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+<section class="db-questions  bg-white">
+    <div class="container" style="max-width: 960px">
+        <div class="row" style=" margin-bottom: 50px">
+            <div class="col-12">
+                <h2 class="text-center  color2">Информация по бронированию</h2>
+                <h5 class="text-center  color2" th:text="' Домик №'+${homeReservation.getHomeNumber()}"/>
+<!--                <div class="container" style="max-width: 960px;">-->
+            </div>
+            <!--            </div>-->
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-4 dg-col">
+                <label>Дата заезда</label>
+                <h6 class=""  th:text="${#dates.format(homeReservation.smena.getStartdate(),'dd MMMM')}"/>
+            </div>
+            <div th:if="${homeReservation.date_in!=null}" class="col-md-2 col-sm-4 dg-col">
+                <label>Заезд</label>
+                <h6 th:text="${#dates.format(homeReservation.date_in,'dd MMMM')}+' '+${homeReservation.time_in}" />
+            </div>
+            <div th:if="${homeReservation.date_out!=null}"  class="col-md-2 col-sm-4 dg-col">
+                <label>Выезд</label>
+                <h6 th:text="${#dates.format(homeReservation.date_out,'dd MMMM')}+' '+${homeReservation.time_out}" />
+            </div>
+            <div class="col-md-6 sm-12">
+                <label>Автор брони</label>
+                <h6 class="color2" th:text="${homeReservation.getOwner().getFullname()+', '+homeReservation.getOwner().getPhone()+', '+homeReservation.getOwner().getEmail()}" />
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 dg-col">
+                <label>Экскурсии</label>
+                <div th:each="el:${homeReservation.getExcursions()}">
+                    <h5     th:text="${el.name}+' '"/>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 dg-col">
+                <label>Комментарии к бронированию</label>
+                <h5 th:text="${homeReservation.comment}" />
+            </div>
+        </div>
+
+
+        <div class="row" >
+            <div class="col-md-6 col-sm-6 "   th:each="el:${homeReservation.getPeoples()}">
+                <div class="bd-code-snippet" >
+<!--                    <label>ФИО</label>-->
+                    <h5 class=""  th:text="${el.getFullname()}"/>
+
+                    <p    th:text="${el.getPhone()}"/>
+                    <p class="" type="email" style="margin-bottom: 0" th:text="${el.getEmail()+' '+el.getPublicBirthdayInfo()}"/>
+<!--                    <p style="margin-bottom: 0" class="color2" th:if="${(#dates.createNow().getYear()-el.getBirthdate().getYear())<18}" th:text="РЕБЕНОК"/>-->
+<!--                    <p class=""  style="margin-bottom: 0" th:text="${el.getPublicBirthdayInfo()}"/>-->
+                    <p class="" style="margin-top: 1rem" th:text="${el.getFilial().name}"/>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<footer th:insert="~{blocks/footer ::footer}"></footer>
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+
+</html>

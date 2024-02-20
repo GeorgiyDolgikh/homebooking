@@ -1,0 +1,76 @@
+<div th:fragment="top" >
+    <!DOCTYPE HTML>
+    <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+    <head>
+        <title>База отдыха Переделки</title>
+        <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/fontello.css">
+    </head>
+    <nav class="navbar navbar-expand-sm  " data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"  ><img src="/img/white.png" style="max-width: 80px;max-height: 50px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/personalbooking">Забронировать</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Личный кабинет</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Администрирование
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/viewday">Просмотр заездов</a></li>
+                            <li><a class="dropdown-item" href="/viewall">Большая портянка</a></li>
+                            <li><a class="dropdown-item" href="#">Что то еще/a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/groupbooking">Групповой заезд</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="demo-icon icon-user-o"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/login">Войти</a></li>
+                            <li><a class="dropdown-item" href="/registration">Зарегистрироваться</a></li>
+                            <li><hr class="dropdown-divider"></li>
+<!--                            <li><a class="dropdown-item" th:text="${principal.getUsername()}" href="/registration"/></li>-->
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 mt-3">
+
+                <h1 class="text-center text-white">База отдыха ВСК Переделки</h1>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

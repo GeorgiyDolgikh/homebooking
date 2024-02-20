@@ -1,0 +1,83 @@
+<header th:insert="~{blocks/top ::top}" xmlns="http://www.w3.org/1999/html"></header>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="ru">
+<section class="db-questions  bg-white">
+    <div class="container" style="max-width: 960px">
+
+        <form action="/viewday" method="post" id="selectday">
+            <input type="hidden"
+                   th:name="${_csrf.parameterName}"
+                   th:value="${_csrf.token}"/>
+            <div class="row">
+                <div class="col-12 mb-5" >
+                    <h2 class="text-center  color2">Просмотр заезда</h2>
+                    <!--                <div class="container" style="max-width: 960px;">-->
+                </div>
+                <div class="col-12 dg-col">
+                    <label for="smena" class="form-label">Дата заезда</label>
+                    <select name="smena" id="smena"   required class="form-control" onchange="this.form.submit()" th:selected="${smenas}">
+                        <option value=""  disabled="disabled">Выберите</option>
+                        <option th:each="el:${smenas}"   th:text="${el.getFormattedDate()}"  th:value="${el.getId()}"
+                                th:selected="${smena!=null}?${smena.getId()==el.getId()}:'false'" ></option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <div th:if="${smena!=null}">
+            <div th:if="${excursions!=null}" class="row dg-col">
+                <h4 class="dg-title">Голосование по экскурсиям</h4>
+                <div th:each="e:${excursions}">
+                    <h6 th:text="${e.getKey()}+': '+${e.getValue()}"/>
+                </div>
+            </div>
+            <div class="row">
+                <h4 class="dg-title">Бронирования</h4>
+            </div>
+            <div class="row" th:each="el,iStat:${smena.getHomeReservations()}" >
+                <form action="/deletereservation" method="post" onsubmit=" return deleteBooking()">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
+                    <input hidden="hidden" name="homeReservation" th:value="${el.getId()}">
+                    <div class="row bd-code-snippet">
+                        <h6 class="dg-title">
+                            <a th:href="'/viewhomereservation/'+${el.getId()}"  th:text="'Домик №'+${el.getHomeNumber()}" />
+                        </h6>
+                        <div th:if="${el.date_in!=null}" class="col-md-3 dg-col">
+                            <label>Заезд</label>
+                            <h6 th:text="${#dates.format(el.date_in,'dd MMMM')}+' '+${el.getTime_in()}" />
+                        </div>
+                        <div th:if="${el.date_out!=null}"  class="col-md-3 dg-col">
+                            <label>Выезд</label>
+                            <h6 th:text="${#dates.format(el.date_out,'dd MMMM')}+' '+${el.getTime_out()}" />
+                        </div>
+                        <div class="col-md-6 col-sm-12 dg-col">
+                            <label>Комментарии к бронированию</label>
+                            <h6 th:text="${el.comment}" />
+                        </div>
+                        <h6 class="dg-title">Проживающие</h6>
+                        <div class="row" th:each="p:${el.getPeoples()}">
+                            <h6 th:text="${p.getFullname()+', '+p.getPhone()+p.getPublicBirthdayInfo()}"/>
+                        </div>
+                        <div class="row">
+<!--                            <a th:href="'/delete/'+${smena.getId()}+'/'+${el.getId()}"  onclick="deleteBooking()">-->
+                            <button type="submit" id="deleteguestbutton" class="btn btn-sm  btn-danger " style="max-width: 200px" >Отменить бронирование</button>
+<!--                            </a>-->
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:insert="~{blocks/footer ::footer}"></footer>
+<script>
+    function deleteBooking(){
+     //   event.preventDefault();
+        return confirm("Вы действительно хотите удалить информацию о госте?");
+    }
+
+</script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</html>
